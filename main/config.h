@@ -28,7 +28,15 @@
 #define VinPerBitDefault (3.30/2.0)/4095.0   // ADC FS split in two / resolution
 #define USER_INPUT_TIMEOUT_MS 60000
 
-typedef struct {
+
+typedef struct AlarmInput {
+  bool active;
+  char inputName[40];
+  char descriptiveName[40];
+  bool normallyClosed;
+} Alarm_Input;
+
+typedef struct Configuration {
   bool configOK;
   char Name[40];
   char DeviceID[40];
@@ -38,6 +46,7 @@ typedef struct {
   char mqttBrokerUrl[160];
   char mqttUsername[40];
   char mqttPassword[160];
+  Alarm_Input inputs[8];
   float battVCalFactor;
   int retries;
 } Configuration;

@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "alarm_controller",
-    "project_version":    "1",
+    "project_version":    "74a1789-dirty",
     "project_path":       "/home/phillip/source/repos/AlarmController",
     "idf_path":           "/home/phillip/esp/esp-idf",
     "build_dir":          "/home/phillip/source/repos/AlarmController/build",
@@ -11,7 +11,7 @@
     "app_elf":            "alarm_controller.elf",
     "app_bin":            "alarm_controller.bin",
     "build_type":         "flash_app",
-    "git_revision":       "v5.2-dev-3065-g272b4091f1",
+    "git_revision":       "v5.2-dev-3065-g272b4091f1-dirty",
     "target":             "esp32",
     "rev":                "0",
     "min_rev":            "0",

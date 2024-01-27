@@ -8,7 +8,6 @@
 int mqttMessagesQueued = 0;
 bool gotTime = false;
 int year = 0, month = 0, day = 0, hour = 0, minute = 0, seconds = 0;
-extern char* s;
 esp_mqtt_client_handle_t client;
 
 /*
@@ -21,7 +20,7 @@ esp_mqtt_client_handle_t client;
  * @param event_id The id for the received event.
  * @param event_data The data for the event, esp_mqtt_event_handle_t.
  */
-static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
+void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
     char topic[160];
     char payload[2000];
@@ -45,87 +44,32 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 
             // Send the alarm sensor configurations.
             // Use the same command and state topics so we don't have to echo commands to state
-            sprintf(topic, "homeassistant/binary_sensor/HouseAlarm/HallwayMotion/config");
-            sprintf(payload, "{\"unique_id\": \"7y3fghn8y8jjh\", \
-                \"device\": {\"identifiers\": [\"HouseAlarm-ID\"], \"name\": \"HouseAlarm\"}, \
-                \"availability\": {\"topic\": \"homeassistant/binary_sensor/HouseAlarm/availability\", \
-                \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}, \
-                \"name\": \"Hallway Motion\", \"retain\":true, \"device_class\": \"motion\", \
-                \"state_topic\": \"homeassistant/binary_sensor/HouseAlarm/HallwayMotion/state\"}");
-                //,config.UID, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
-            msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
-            mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published Alarm Office Motion config message successfully, msg_id=%d", msg_id);
-
-            sprintf(topic, "homeassistant/binary_sensor/HouseAlarm/RumpusMotion/config");
-            sprintf(payload, "{\"unique_id\": \"34876fh3f738as\", \
-                \"device\": {\"identifiers\": [\"HouseAlarm-ID\"], \"name\": \"HouseAlarm\"}, \
-                \"availability\": {\"topic\": \"homeassistant/binary_sensor/HouseAlarm/availability\", \
-                \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}, \
-                \"name\": \"Rumpus Motion\", \"retain\":true, \"device_class\": \"motion\", \
-                \"state_topic\": \"homeassistant/binary_sensor/HouseAlarm/RumpusMotion/state\"}");
-                //,config.UID, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
-            msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
-            mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published Alarm Rumpus Motion config message successfully, msg_id=%d", msg_id);
-
-            sprintf(topic, "homeassistant/binary_sensor/HouseAlarm/EntryMotion/config");
-            sprintf(payload, "{\"unique_id\": \"nklg65iyvb68go\", \
-                \"device\": {\"identifiers\": [\"HouseAlarm-ID\"], \"name\": \"HouseAlarm\"}, \
-                \"availability\": {\"topic\": \"homeassistant/binary_sensor/HouseAlarm/availability\", \
-                \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}, \"device_class\": \"motion\", \
-                \"name\": \"Entry Motion\", \"retain\":true, \
-                \"state_topic\": \"homeassistant/binary_sensor/HouseAlarm/EntryMotion/state\"}");
-                //,config.UID, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
-            msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
-            mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published Alarm Entry Motion config message successfully, msg_id=%d", msg_id);
-
-            sprintf(topic, "homeassistant/binary_sensor/HouseAlarm/LoungeMotion/config");
-            sprintf(payload, "{\"unique_id\": \"7b6gliyvu6fku6f5\", \
-                \"device\": {\"identifiers\": [\"HouseAlarm-ID\"], \"name\": \"HouseAlarm\"}, \
-                \"availability\": {\"topic\": \"homeassistant/binary_sensor/HouseAlarm/availability\", \
-                \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}, \"device_class\": \"motion\", \
-                \"name\": \"Lounge Motion\", \"retain\":true, \
-                \"state_topic\": \"homeassistant/binary_sensor/HouseAlarm/LoungeMotion/state\"}");
-                //,config.UID, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
-            msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
-            mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published Alarm Lounge Motion config message successfully, msg_id=%d", msg_id);
-
-            /*            
-            // Send the curtailment enable switch configuration. Use the relay number availability topic
-            // Use the same command and state topics so we don't have to echo commands to state
-            sprintf(topic, "homeassistant/switch/%s/config",config.Name);
-            sprintf(payload, "{\"unique_id\": \"S_%s\", \"retain\": \"true\", \
-                \"device\": {\"identifiers\": [\"%s\"], \"name\": \"%s\"}, \
-                \"availability\": {\"topic\": \"homeassistant/number/%s/availability\", \"payload_available\": \"online\", \"payload_not_available\": \"offline\"}, \
-                \"command_topic\": \"homeassistant/switch/%s/command\", \"state_topic\": \"homeassistant/switch/%s/command\"}"
-                ,config.UID, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
-            msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
-            mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published Envoy Relay config message successfully, msg_id=%d", msg_id);
-
-            // Send the manual control switch configuration. Use the relay number availability topic
-            // Use the same command and state topics so we don't have to echo commands to state
-            sprintf(topic, "homeassistant/switch/%s-manual/config",config.Name);
-            sprintf(payload, "{\"unique_id\": \"S_%s-manual\", \"retain\": \"true\", \
-                \"device\": {\"identifiers\": [\"%s\"], \"name\": \"%s\"}, \
-                \"availability\": {\"topic\": \"homeassistant/number/%s/availability\", \"payload_available\": \"online\", \"payload_not_available\": \"offline\"}, \
-                \"command_topic\": \"homeassistant/switch/%s-manual/command\", \"state_topic\": \"homeassistant/switch/%s-manual/command\"}"
-                ,config.UID, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
-            msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
-            mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published Envoy Relay config message successfully, msg_id=%d", msg_id);
-
-            */
+            char id[80];
+            for (int i = 0; i < 8; i++) {
+                if (config.inputs[i].active) {
+                    strcpy (id, config.UID);
+                    int l = strlen(config.UID);
+                    id[l] = '-'; id[l+1] = (char)(i + 0x30); id[l+2] = '\0';
+                    sprintf(topic, "homeassistant/binary_sensor/%s/%s/config", config.Name, config.inputs[i].inputName);
+                    sprintf(payload, "{\"unique_id\": \"%s\", \
+                        \"device\": {\"identifiers\": [\"%s\"], \"name\": \"%s\"}, \
+                        \"availability\": {\"topic\": \"homeassistant/binary_sensor/%s/availability\", \
+                        \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}, \
+                        \"name\": \"%s\", \"retain\":true, \"device_class\": \"motion\", \
+                        \"state_topic\": \"homeassistant/binary_sensor/%s/%s/state\"}",
+                        id, config.DeviceID, config.Name, config.Name, config.inputs[i].descriptiveName, config.Name, config.inputs[i].inputName);
+                    msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
+                    mqttMessagesQueued++;
+                    ESP_LOGI(TAG, "Published %s config message successfully, msg_id=%d", config.inputs[i].descriptiveName, msg_id);
+                }
+            }
 
             // Send an online message
-            sprintf(topic, "homeassistant/binary_sensor/HouseAlarm/availability");
+            sprintf(topic, "homeassistant/binary_sensor/%s/availability", config.Name);
             sprintf(payload, "online");
             msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
             mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published House Alarm online message successfully, msg_id=%d, topic=%s", msg_id, topic);
+            ESP_LOGI(TAG, "Published online message successfully, msg_id=%d, topic=%s", msg_id, topic);
     
             break;
         case MQTT_EVENT_DISCONNECTED:
@@ -144,28 +88,27 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
             mqttMessagesQueued--;
             break;
         case MQTT_EVENT_DATA:
-            /*
-            //ESP_LOGI(TAG, "MQTT_EVENT_DATA");
-            strncpy(s, event->topic, event->topic_len);
-            s[event->topic_len] = '\0';
-            ESP_LOGV(TAG, "Received an event - topic was %s", s);
-            if (strcmp(s, "homeassistant/CurrentTime") == 0) {
+            ESP_LOGD(TAG, "MQTT_EVENT_DATA");
+            //ESP_LOGI(TAG, "Event topic length = %d and data length = %d", event->topic_len, event->data_len);
+            strncpy(topic, event->topic, event->topic_len);
+            topic[event->topic_len] = '\0';
+            //ESP_LOGI(TAG, "Received an event - topic was %s", topic);
+            if (strcmp(topic, "homeassistant/CurrentTime") == 0) {
                 // Process the time
-                ESP_LOGV(TAG, "Got the time from %s, as %.*s.", s, event->data_len, event->data);
+                //ESP_LOGI(TAG, "Got the time from %s, as %.*s.", topic, event->data_len, event->data);
                 gotTime = true;
-                strncpy(s, event->data, event->data_len);
-                s[event->data_len] = 0;
-                sscanf(s, "%d.%d.%d %d:%d:%d", &year, &month, &day, &hour, &minute, &seconds);
-
+                strncpy(payload, event->data, event->data_len);
+                payload[event->data_len] = 0;
+                sscanf(payload, "%d.%d.%d %d:%d:%d", &year, &month, &day, &hour, &minute, &seconds);
                 // Send an online every 10 seconds
                 if (seconds % 10 == 0) {
-                    sprintf(topic, "homeassistant/number/%s/availability", config.Name);
+                    sprintf(topic, "homeassistant/binary_sensor/%s/availability", config.Name);
                     sprintf(payload, "online");
                     msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); // Temp sensor config, set the retain flag on the message
                     mqttMessagesQueued++;
-                    ESP_LOGV(TAG, "Published Envoy Relay online message successfully, msg_id=%d, topic=%s", msg_id, topic);
+                    ESP_LOGI(TAG, "Published online message successfully, msg_id=%d, topic=%s", msg_id, topic);
                 }
-
+/*                
             } else if (strstr(s, "command") != NULL) {
                 if (strstr(s, "number")) {
                     strncpy(s, event->data, event->data_len);
@@ -209,10 +152,10 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
                 } else {
                     ESP_LOGE(TAG, "Error decoding power values from JSON string.");
                 }
+*/
             } else {
-                ESP_LOGI(TAG, "Received unexpected message, topic %s", s);
-            }
-            */
+                ESP_LOGI(TAG, "Received unexpected message, topic %s", topic);
+            }            
             break;
         case MQTT_EVENT_ERROR:
             ESP_LOGE(TAG, "MQTT_EVENT_ERROR. ");

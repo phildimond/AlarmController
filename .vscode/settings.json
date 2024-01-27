@@ -3,6 +3,8 @@
   "idf.port": "/dev/ttyUSB0",
   "idf.flashType": "UART",
   "files.associations": {
-    "sdkconfig.h": "c"
-  }
+    "sdkconfig.h": "c",
+    "typeinfo": "c"
+  },
+  "idf.adapterTargetName": "esp32"
 }

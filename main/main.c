@@ -222,4 +222,8 @@ void app_main(void)
     while (!mqttConnected && mqttWaits < 40) { vTaskDelay(250 / portTICK_PERIOD_MS); mqttWaits++; } 
     ESP_LOGI(TAG, "MQTT client started after %f seconds.", ((float)mqttWaits) * 0.25);
 
+    // Main app loop
+    while (true) {
+        vTaskDelay(250 / portTICK_PERIOD_MS);
+    }
 }
