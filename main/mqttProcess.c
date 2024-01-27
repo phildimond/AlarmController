@@ -45,11 +45,15 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             // Send the alarm sensor configurations.
             // Use the same command and state topics so we don't have to echo commands to state
             char id[80];
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 6; i++) {
                 if (config.inputs[i].active) {
+
+                    // Make up the input sensor's unique ID string
                     strcpy (id, config.UID);
                     int l = strlen(config.UID);
                     id[l] = '-'; id[l+1] = (char)(i + 0x30); id[l+2] = '\0';
+
+                    // Send the config for this sensor
                     sprintf(topic, "homeassistant/binary_sensor/%s/%s/config", config.Name, config.inputs[i].inputName);
                     sprintf(payload, "{\"unique_id\": \"%s\", \
                         \"device\": {\"identifiers\": [\"%s\"], \"name\": \"%s\"}, \
@@ -108,51 +112,6 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                     mqttMessagesQueued++;
                     ESP_LOGI(TAG, "Published online message successfully, msg_id=%d, topic=%s", msg_id, topic);
                 }
-/*                
-            } else if (strstr(s, "command") != NULL) {
-                if (strstr(s, "number")) {
-                    strncpy(s, event->data, event->data_len);
-                    s[event->data_len] = 0;
-                    ESP_LOGV(TAG, "Received command %s.", s);
-                    uint8_t val = (uint8_t)(atoi((const char*)s));
-                    // use this value to set the relays if we're in manual control
-                    commandedRelayValue = val;
-                    if (manualControl == true && val <= 15) { // Unsigned so always >= 0
-                        oldRelayValue = relayValue;
-                        relayValue = val;
-                        ESP_LOGV(TAG, "Set relay value to $%02X", relayValue);
-                    }      
-                } else if (strstr(s, "switch")) {
-                    // Switch state changed from Home Assistant
-                    if (strstr(s, "manual")) { // Enable switch?
-                        strncpy(s, event->data, event->data_len);
-                        s[event->data_len] = 0;
-                        if (strstr(s, "ON")) { 
-                            manualControl = true; 
-                            relayValue = commandedRelayValue;
-                        } else { manualControl = false; }
-                        ESP_LOGI(TAG, "Manual control switch state change received %s - changed to %d", s, manualControl);
-                    } else { // must be the curtailment switch
-                        strncpy(s, event->data, event->data_len);
-                        s[event->data_len] = 0;
-                        if (strstr(s, "ON")) { curtailmentEnabled  = true; } else { curtailmentEnabled = false; }
-                        ESP_LOGI(TAG, "Curtailment switch state change received %s - changed to %d", s, curtailmentEnabled);
-                    }
-                } else {
-                    // Don't know what this topic was
-                    ESP_LOGE(TAG, "Received unknown command topic: %s", s);
-                }
-            } else if (strcmp(s, "homeassistant/Power") == 0) {
-                strncpy(s, event->data, event->data_len);
-                s[event->data_len] = 0;
-                ESP_LOGV(TAG, "Received power data: %s", s);
-                if (PowerManager_Decode(&powerValues, (const char*)s) == 0) {
-                    ESP_LOGV(TAG, "Successfully decoded power values from JSON string.");
-                    powerValuesUpdated = true;    // Flag that we have received valid power values
-                } else {
-                    ESP_LOGE(TAG, "Error decoding power values from JSON string.");
-                }
-*/
             } else {
                 ESP_LOGI(TAG, "Received unexpected message, topic %s", topic);
             }            

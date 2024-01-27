@@ -222,8 +222,35 @@ void app_main(void)
     while (!mqttConnected && mqttWaits < 40) { vTaskDelay(250 / portTICK_PERIOD_MS); mqttWaits++; } 
     ESP_LOGI(TAG, "MQTT client started after %f seconds.", ((float)mqttWaits) * 0.25);
 
+    // Initialise the inputs
+    int inputVals[8];
+    int previousInputVals[8];
+    const gpio_num_t inputPins[6] = {In1_Pin, In2_Pin, In3_Pin, In4_Pin, In5_Pin, In6_Pin};
+    gpio_config_t inputConfigs[6] = { {0}, {0}, {0}, {0}, {0}, {0} };
+    for (int i = 0; i < 6; i++) {
+        inputConfigs[i].mode = GPIO_MODE_INPUT;
+        inputConfigs[i].pin_bit_mask = (1ULL << inputPins[i]);
+        inputConfigs[i].pull_up_en = GPIO_PULLUP_ENABLE;
+        ESP_ERROR_CHECK(gpio_config(&inputConfigs[i]));
+    }
+    vTaskDelay(50 / portTICK_PERIOD_MS); // Short delay for inputs to stabilise
+    for (int i = 0; i < 6; i++) {
+        inputVals[i] = gpio_get_level(inputPins[i]);
+        previousInputVals[i] = inputVals[i];
+    }
+
     // Main app loop
     while (true) {
-        vTaskDelay(250 / portTICK_PERIOD_MS);
+        // Read and process any changes to the inputs
+        for (int i = 0; i < 6; i++) {
+            inputVals[i] = gpio_get_level(inputPins[i]);
+            if (inputVals[i] != previousInputVals[i]) {
+                ESP_LOGI(TAG, "Input %d changed state from %d to %d", i, previousInputVals[i], inputVals[i]);
+                previousInputVals[i] = inputVals[i];
+            }
+        }
+
+        // Sleep and let other tasks run
+        vTaskDelay(25 / portTICK_PERIOD_MS);
     }
 }

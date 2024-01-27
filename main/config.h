@@ -46,7 +46,7 @@ typedef struct Configuration {
   char mqttBrokerUrl[160];
   char mqttUsername[40];
   char mqttPassword[160];
-  Alarm_Input inputs[8];
+  Alarm_Input inputs[6];
   float battVCalFactor;
   int retries;
 } Configuration;

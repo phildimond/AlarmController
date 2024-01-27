@@ -168,8 +168,8 @@ bool LoadConfiguration()
     strcpy (config.inputs[3].inputName, "LoungeMotion");
     strcpy (config.inputs[3].descriptiveName, "Lounge Motion");
     config.inputs[3].normallyClosed = true;
-    
-    for (int i = 4; i < 8; i++) {
+
+    for (int i = 4; i < 6; i++) {
         config.inputs[i].active = false;
         strcpy(config.inputs[i].inputName, "");
         strcpy(config.inputs[i].descriptiveName, "");
