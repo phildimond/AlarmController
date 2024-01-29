@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "alarm_controller",
-    "project_version":    "ed56a0b-dirty",
+    "project_version":    "91907c2-dirty",
     "project_path":       "/home/phillip/source/repos/AlarmController",
     "idf_path":           "/home/phillip/esp/esp-idf",
     "build_dir":          "/home/phillip/source/repos/AlarmController/build",
@@ -820,7 +820,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "/home/phillip/source/repos/AlarmController/build/esp-idf/main/libmain.a",
-            "sources": [ "/home/phillip/source/repos/AlarmController/main/main.c", "/home/phillip/source/repos/AlarmController/main/utilities.c", "/home/phillip/source/repos/AlarmController/main/config.c", "/home/phillip/source/repos/AlarmController/main/mqttProcess.c" ],
+            "sources": [ "/home/phillip/source/repos/AlarmController/main/ethernetProcess.c", "/home/phillip/source/repos/AlarmController/main/inputOutput.c", "/home/phillip/source/repos/AlarmController/main/main.c", "/home/phillip/source/repos/AlarmController/main/utilities.c", "/home/phillip/source/repos/AlarmController/main/config.c", "/home/phillip/source/repos/AlarmController/main/mqttProcess.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

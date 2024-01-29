@@ -1,9 +1,9 @@
-/* MQTT Sensor Sender for Home Assistant: configuration
+/* MQTT Alarm Controller: configuration
    
    Reads the config from and writes it to SPIFFS, and allows for entering
    the configuration data.
 
-   Copyright 2023 Phillip C Dimond
+   Copyright 2024 Phillip C Dimond
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
