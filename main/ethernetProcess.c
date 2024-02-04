@@ -15,8 +15,8 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
 */
+
 #include <string.h>
 
 #include "sdkconfig.h"
@@ -34,8 +34,7 @@
 #include "ethernetProcess.h"
 
 /** Event handler for Ethernet events */
-void eth_event_handler(void *arg, esp_event_base_t event_base,
-                       int32_t event_id, void *event_data)
+void eth_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     uint8_t mac_addr[6] = {0};
     /* we can get the ethernet driver handle from event data */
@@ -63,8 +62,7 @@ void eth_event_handler(void *arg, esp_event_base_t event_base,
 }
 
 /** Event handler for IP_EVENT_ETH_GOT_IP */
-void got_ip_event_handler(void *arg, esp_event_base_t event_base,
-                          int32_t event_id, void *event_data)
+void got_ip_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     ip_event_got_ip_t *event = (ip_event_got_ip_t *) event_data;
     const esp_netif_ip_info_t *ip_info = &event->ip_info;

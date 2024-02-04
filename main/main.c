@@ -27,6 +27,7 @@
 #include "ethernetProcess.h"
 #include "mqttProcess.h"
 #include "inputOutput.h"
+
 #include "main.h"
 
 const char *TAG = "AlarmController";
@@ -34,6 +35,10 @@ const char *TAG = "AlarmController";
 bool ethernetGotIp = false;
 bool mqttConnected = false;
 char s[1024];
+
+#define NUM_INPUTS 6
+const gpio_num_t inputPins[NUM_INPUTS] = {In1_Pin, In2_Pin, In3_Pin, In4_Pin, In5_Pin, In6_Pin};
+DebouncedInput inputs[NUM_INPUTS];
 
 void app_main(void)
 {
@@ -113,30 +118,16 @@ void app_main(void)
     ESP_LOGI(TAG, "MQTT client started after %f seconds.", ((float)mqttWaits) * 0.25);
 
     // Initialise the inputs
-    int inputVals[8];
-    int previousInputVals[8];
-    const gpio_num_t inputPins[6] = {In1_Pin, In2_Pin, In3_Pin, In4_Pin, In5_Pin, In6_Pin};
-    gpio_config_t inputConfigs[6] = { {0}, {0}, {0}, {0}, {0}, {0} };
-    for (int i = 0; i < 6; i++) {
-        inputConfigs[i].mode = GPIO_MODE_INPUT;
-        inputConfigs[i].pin_bit_mask = (1ULL << inputPins[i]);
-        inputConfigs[i].pull_up_en = GPIO_PULLUP_ENABLE;
-        ESP_ERROR_CHECK(gpio_config(&inputConfigs[i]));
-    }
+    initialiseInputs(inputs, inputPins, NUM_INPUTS);
     vTaskDelay(50 / portTICK_PERIOD_MS); // Short delay for inputs to stabilise
-    for (int i = 0; i < 6; i++) {
-        inputVals[i] = gpio_get_level(inputPins[i]);
-        previousInputVals[i] = inputVals[i];
-    }
 
     // Main app loop
     while (true) {
         // Read and process any changes to the inputs
-        for (int i = 0; i < 6; i++) {
-            inputVals[i] = gpio_get_level(inputPins[i]);
-            if (inputVals[i] != previousInputVals[i]) {
-                ESP_LOGI(TAG, "Input %d changed state from %d to %d", i, previousInputVals[i], inputVals[i]);
-                previousInputVals[i] = inputVals[i];
+        updateInputs(inputs, NUM_INPUTS);
+        for (int i = 0; i < NUM_INPUTS; i++) {
+            if (inputs[i].changed) {
+                ESP_LOGI(TAG, "Input %d changed to %d", i, inputs[i].currentState);
             }
         }
 

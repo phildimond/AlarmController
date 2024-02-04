@@ -155,7 +155,7 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
 void mqtt_app_start(void)
 {
     char lwTopic[100];
-    sprintf(lwTopic, "homeassistant/number/%s/availability", config.Name);
+    sprintf(lwTopic, "homeassistant/binary_sensor/%s/availability", config.Name);
     const char* lwMessage = "offline\0";
     esp_mqtt_client_config_t mqtt_cfg = {
         .network = {

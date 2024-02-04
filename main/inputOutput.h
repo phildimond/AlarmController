@@ -23,7 +23,17 @@
 
 #include "inttypes.h"
 
+typedef struct {
+  gpio_num_t gpioNumber;
+  int previousState;
+  int currentState;
+  int64_t changeStart;
+  bool changed;
+} DebouncedInput;
+
 void initialSetup(void);
+void initialiseInputs(DebouncedInput inputs[], const gpio_num_t pins[], int numInputs);
 bool buttonPressed(void);
+void updateInputs(DebouncedInput inputs[], int numInputs);
 
 #endif // #ifndef __INPUTOUTPUT_H__

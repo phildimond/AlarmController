@@ -15,5 +15,6 @@ extern bool ethernetGotIp;
 #define In6_Pin GPIO_NUM_33
 #define S_TO_uS(s) (s * 1000000)
 #define uS_TO_S(s) (s / 1000000)
+#define DEBOUNCE_TIME_US 20000
 
 #endif // #ifndef __DEFINES_H__

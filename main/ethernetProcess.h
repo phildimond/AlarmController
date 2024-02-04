@@ -21,10 +21,11 @@
 #ifndef __ETHERNETPROCESS_H__
 #define __ETHERNETPROCESS_H__
 
-void eth_event_handler(void *arg, esp_event_base_t event_base,
-                       int32_t event_id, void *event_data);
-void got_ip_event_handler(void *arg, esp_event_base_t event_base,
-                          int32_t event_id, void *event_data);
+#include "esp_event.h"
+#include "inttypes.h"
+
+void eth_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data);
+void got_ip_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data);
 void ethernetInitialise(void);
 
 #endif // #ifndef __ETHERNETPROCESS_H__
