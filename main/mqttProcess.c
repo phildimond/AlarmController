@@ -31,7 +31,7 @@ bool gotTime = false;
 int year = 0, month = 0, day = 0, hour = 0, minute = 0, seconds = 0;
 esp_mqtt_client_handle_t client;
 
-/*
+/******************************************************************************************************
  * @brief Event handler registered to receive MQTT events
  *
  *  This function is called by the MQTT client event loop.
@@ -40,7 +40,7 @@ esp_mqtt_client_handle_t client;
  * @param base Event base for the handler(always MQTT Base in this example).
  * @param event_id The id for the received event.
  * @param event_data The data for the event, esp_mqtt_event_handle_t.
- */
+ ******************************************************************************************************/
 void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
     char topic[160];
@@ -96,6 +96,17 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             mqttMessagesQueued++;
             ESP_LOGI(TAG, "Published online message successfully, msg_id=%d, topic=%s", msg_id, topic);
     
+            // Send initial states
+            for (int i = 0; i < NUM_INPUTS; i++) {
+                if (config.inputs[i].active) {
+                    sprintf(topic, "homeassistant/binary_sensor/%s/%s/state", config.Name, config.inputs[i].inputName);
+                    sprintf(payload, "OFF");
+                    int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
+                    mqttMessagesQueued++;
+                    ESP_LOGI(TAG, "Published state message for input %d, %s successfully, msg_id=%d", i, config.inputs[i].descriptiveName, msg_id);
+                }
+            }
+
             break;
         case MQTT_EVENT_DISCONNECTED:
             mqttConnected = false;
@@ -152,6 +163,14 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
     }
 }
 
+/***************************************************************************************************
+ * 
+ * Start the MQTT processes. 
+ * 
+ * Instantiates and starts the MQTT communication system
+ * 
+ * *************************************************************************************************/
+
 void mqtt_app_start(void)
 {
     char lwTopic[100];
@@ -188,3 +207,23 @@ void mqtt_app_start(void)
     if (err != ESP_OK) { ESP_LOGE(TAG, "MQTT client start error: %s", esp_err_to_name(err)); }
 }
 
+/********************************************************************************************************
+ * 
+ * Send MQTT Alarm state change event
+ * 
+ * Send a state change message to MQTT
+ * 
+ *******************************************************************************************************/
+void sendState(int inputNumber, bool active)
+{
+    char topic[200];
+    char payload[20];
+
+    // Send a state message for the specified input
+    sprintf(topic, "homeassistant/binary_sensor/%s/%s/state", config.Name, config.inputs[inputNumber].inputName);
+    if (active) { sprintf(payload, "ON"); } else { sprintf(payload, "OFF"); }
+    int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
+    mqttMessagesQueued++;
+    ESP_LOGI(TAG, "Published state message for input %d, %s successfully, msg_id=%d", 
+        inputNumber, config.inputs[inputNumber].descriptiveName, msg_id);
+}

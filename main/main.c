@@ -36,7 +36,6 @@ bool ethernetGotIp = false;
 bool mqttConnected = false;
 char s[1024];
 
-#define NUM_INPUTS 6
 const gpio_num_t inputPins[NUM_INPUTS] = {In1_Pin, In2_Pin, In3_Pin, In4_Pin, In5_Pin, In6_Pin};
 DebouncedInput inputs[NUM_INPUTS];
 
@@ -128,6 +127,9 @@ void app_main(void)
         for (int i = 0; i < NUM_INPUTS; i++) {
             if (inputs[i].changed) {
                 ESP_LOGI(TAG, "Input %d changed to %d", i, inputs[i].currentState);
+                bool state = false;
+                if (inputs[i].currentState) { state = true; }
+                sendState(i, state);
             }
         }
 
