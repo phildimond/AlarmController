@@ -24,10 +24,11 @@
 
 #include <stdbool.h>
 
+#include "defines.h"
+
 #define filename "/spiffs/config.txt"
 #define VinPerBitDefault (3.30/2.0)/4095.0   // ADC FS split in two / resolution
 #define USER_INPUT_TIMEOUT_MS 60000
-
 
 typedef struct AlarmInput {
   bool active;
@@ -46,7 +47,8 @@ typedef struct Configuration {
   char mqttBrokerUrl[160];
   char mqttUsername[40];
   char mqttPassword[160];
-  Alarm_Input inputs[6];
+  int numberOfInputs;
+  Alarm_Input inputs[NUM_INPUTS];
   float battVCalFactor;
   int retries;
 } Configuration;

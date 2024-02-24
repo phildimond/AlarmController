@@ -57,9 +57,9 @@ void initialSetup()
 
 /******************************************************************
  * 
- * Initial Setup
+ * Initialise GPIO alarm inputs
  * 
- * Initialise critical IO functions required for startup
+ * Setup debounced alarm inputs
  * 
 *******************************************************************/
 void initialiseInputs(DebouncedInput inputs[], const gpio_num_t pins[], int numInputs)
@@ -82,7 +82,7 @@ void initialiseInputs(DebouncedInput inputs[], const gpio_num_t pins[], int numI
 
 /******************************************************************
  * 
- * Is the board button pressed?
+ * Is the board button pressed? Not debounced, no need.
  * 
 *******************************************************************/
 bool buttonPressed(void) {
