@@ -1318,6 +1318,12 @@
 		(uuid "71d0423d-172b-44de-97ff-42f9518d4d00")
 	)
 	(junction
+		(at 194.31 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a2082c42-aa8e-4abc-a84b-4b67a54350ec")
+	)
+	(junction
 		(at 130.81 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1334,6 +1340,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e18bec32-9af8-4c59-ac90-ed9c3bda9268")
+	)
+	(junction
+		(at 194.31 36.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f05466d7-f46c-45a3-aeb6-57f0ee7ae531")
 	)
 	(junction
 		(at 194.31 72.39)
@@ -1360,6 +1372,16 @@
 			(type default)
 		)
 		(uuid "0714200c-13dc-4c92-acda-b11756af1b45")
+	)
+	(wire
+		(pts
+			(xy 208.28 36.83) (xy 194.31 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c40ed16-3c77-4d35-bd23-a47678ad1a1a")
 	)
 	(wire
 		(pts
@@ -1643,6 +1665,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 99.06) (xy 185.42 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91ae444e-4577-499b-9e37-b6b322f35673")
+	)
+	(wire
+		(pts
 			(xy 139.7 67.31) (xy 120.65 67.31)
 		)
 		(stroke
@@ -1713,6 +1745,16 @@
 	)
 	(wire
 		(pts
+			(xy 194.31 107.95) (xy 194.31 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b2b291a4-e76c-4681-928c-48b21a62788e")
+	)
+	(wire
+		(pts
 			(xy 127 76.2) (xy 120.65 76.2)
 		)
 		(stroke
@@ -1773,6 +1815,16 @@
 	)
 	(wire
 		(pts
+			(xy 194.31 93.98) (xy 194.31 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bef3eaec-ea04-4334-b370-065206a0ff5a")
+	)
+	(wire
+		(pts
 			(xy 194.31 93.98) (xy 194.31 88.9)
 		)
 		(stroke
@@ -1830,6 +1882,16 @@
 			(type default)
 		)
 		(uuid "d98f1919-0273-4f57-a6f5-35e6e77e6612")
+	)
+	(wire
+		(pts
+			(xy 190.5 99.06) (xy 208.28 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9a33330-30c4-4538-aeef-1b3050f209ff")
 	)
 	(wire
 		(pts
@@ -1901,6 +1963,38 @@
 		)
 		(uuid "fbc761a5-2d0f-4427-b822-34266accb074")
 	)
+	(wire
+		(pts
+			(xy 208.28 99.06) (xy 208.28 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ffef8580-0239-4347-b094-9c34082e29e5")
+	)
+	(label "In"
+		(at 102.87 36.83 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "86df3468-4155-47a8-92e9-819acdc10eba")
+	)
+	(label "Out"
+		(at 190.5 36.83 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cf5fd678-83ac-4636-8e21-98b3df3a2050")
+	)
 	(symbol
 		(lib_id "Device:R_Small")
 		(at 194.31 64.77 0)
@@ -1966,6 +2060,73 @@
 			(project "BatteryCharger"
 				(path "/513cbfc7-d5e1-4614-b530-d0a3d04d78fb"
 					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 194.31 105.41 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0a7e410f-04c6-4603-ae2a-de100a3fe6b4")
+		(property "Reference" "R10"
+			(at 191.262 104.648 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "DNF"
+			(at 191.262 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+			(at 194.31 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 194.31 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 194.31 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "59751ccf-717d-4de9-a06d-4d4cb8514cb2")
+		)
+		(pin "2"
+			(uuid "fddff66d-03c0-47ec-af55-1dd150519153")
+		)
+		(instances
+			(project "BatteryCharger"
+				(path "/513cbfc7-d5e1-4614-b530-d0a3d04d78fb"
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -2497,6 +2658,73 @@
 			(project "BatteryCharger"
 				(path "/513cbfc7-d5e1-4614-b530-d0a3d04d78fb"
 					(reference "JP2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 187.96 99.06 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "67c27f7a-03dc-457c-a021-66975d563f30")
+		(property "Reference" "R8"
+			(at 184.912 97.028 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k0"
+			(at 190.246 97.028 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+			(at 187.96 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 187.96 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 187.96 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "99eb7f3c-8ebd-40f2-b530-2b201f977454")
+		)
+		(pin "2"
+			(uuid "63133590-5c3d-4f2d-902a-64c632c5d27d")
+		)
+		(instances
+			(project "BatteryCharger"
+				(path "/513cbfc7-d5e1-4614-b530-d0a3d04d78fb"
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -3186,8 +3414,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f30df77b-6a15-4c9a-bc06-a89b5736721d")
-		(property "Reference" "C1"
-			(at 162.3441 109.2842 0)
+		(property "Reference" "C3"
+			(at 162.56 109.2262 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3195,8 +3423,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_Small"
-			(at 162.3441 111.7084 0)
+		(property "Value" "01uF"
+			(at 162.56 111.7662 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3240,7 +3468,7 @@
 		(instances
 			(project "BatteryCharger"
 				(path "/513cbfc7-d5e1-4614-b530-d0a3d04d78fb"
-					(reference "C1")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -3248,7 +3476,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 203.2 101.6 0)
+		(at 194.31 114.3 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3257,7 +3485,7 @@
 		(fields_autoplaced yes)
 		(uuid "f701333b-564e-4b91-9e39-0b651255b63e")
 		(property "Reference" "#PWR03"
-			(at 203.2 107.95 0)
+			(at 194.31 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3266,7 +3494,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 203.2 105.7331 0)
+			(at 194.31 118.4331 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3274,7 +3502,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 203.2 101.6 0)
+			(at 194.31 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3283,7 +3511,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 203.2 101.6 0)
+			(at 194.31 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3292,7 +3520,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 203.2 101.6 0)
+			(at 194.31 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
