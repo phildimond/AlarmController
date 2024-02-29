@@ -149,6 +149,8 @@ bool LoadConfiguration()
     }
 
     // Manual configuration of alarm inputs for now
+    config.numberOfInputs = NUM_INPUTS;
+
     config.inputs[0].active = true;
     strcpy (config.inputs[0].inputName, "HallwayMotion");
     strcpy (config.inputs[0].descriptiveName, "Hallway Motion");
@@ -169,12 +171,15 @@ bool LoadConfiguration()
     strcpy (config.inputs[3].descriptiveName, "Lounge Motion");
     config.inputs[3].normallyClosed = true;
 
-    for (int i = 4; i < 6; i++) {
-        config.inputs[i].active = false;
-        strcpy(config.inputs[i].inputName, "");
-        strcpy(config.inputs[i].descriptiveName, "");
-        config.inputs[i].normallyClosed = true;
-    }
+    config.inputs[4].active = false;
+    strcpy(config.inputs[4].inputName, "");
+    strcpy(config.inputs[4].descriptiveName, "");
+    config.inputs[4].normallyClosed = true;
+
+    config.inputs[5].active = false;
+    strcpy(config.inputs[5].inputName, "");
+    strcpy(config.inputs[5].descriptiveName, "");
+    config.inputs[5].normallyClosed = true;
 
     // Remove the cJSON documents to recover memory
     cJSON_Delete(settingsJSON);

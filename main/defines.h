@@ -7,6 +7,7 @@ extern bool ethernetGotIp;
 
 #define PHY_POWER_PIN GPIO_NUM_12
 #define BUTTON_PIN_IO GPIO_NUM_34
+#define NUM_INPUTS 6
 #define In1_Pin GPIO_NUM_13
 #define In2_Pin GPIO_NUM_14
 #define In3_Pin GPIO_NUM_15
