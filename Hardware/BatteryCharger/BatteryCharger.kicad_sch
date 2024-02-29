@@ -1554,7 +1554,7 @@
 	)
 	(wire
 		(pts
-			(xy 212.09 39.37) (xy 212.09 43.18)
+			(xy 218.44 39.37) (xy 218.44 43.18)
 		)
 		(stroke
 			(width 0)
@@ -1794,7 +1794,7 @@
 	)
 	(wire
 		(pts
-			(xy 208.28 36.83) (xy 212.09 36.83)
+			(xy 208.28 36.83) (xy 218.44 36.83)
 		)
 		(stroke
 			(width 0)
@@ -3224,7 +3224,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 212.09 43.18 0)
+		(at 218.44 43.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3233,7 +3233,7 @@
 		(fields_autoplaced yes)
 		(uuid "8ebcbb2a-a666-417f-86a4-1e49c8c114de")
 		(property "Reference" "#PWR06"
-			(at 212.09 49.53 0)
+			(at 218.44 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3242,7 +3242,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 212.09 47.3131 0)
+			(at 218.44 47.3131 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3250,7 +3250,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 212.09 43.18 0)
+			(at 218.44 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3259,7 +3259,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 212.09 43.18 0)
+			(at 218.44 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3268,7 +3268,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 212.09 43.18 0)
+			(at 218.44 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3940,7 +3940,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Wurth 691313510002"
 			(at 95.25 39.3699 0)
 			(effects
 				(font
@@ -3949,7 +3949,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MyParts-Mouser:Wurth_691313510002_Pluggable_Terminal_Block"
 			(at 97.79 36.83 0)
 			(effects
 				(font
@@ -3993,7 +3993,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 217.17 36.83 0)
+		(at 223.52 36.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4002,7 +4002,7 @@
 		(fields_autoplaced yes)
 		(uuid "ed5676b7-f8c8-4493-afbf-9a08a67f1e22")
 		(property "Reference" "J2"
-			(at 219.71 36.8299 0)
+			(at 226.06 36.8299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4010,8 +4010,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
-			(at 219.71 39.3699 0)
+		(property "Value" "Wurth 691313510002"
+			(at 226.06 39.3699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4019,8 +4019,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 217.17 36.83 0)
+		(property "Footprint" "MyParts-Mouser:Wurth_691313510002_Pluggable_Terminal_Block"
+			(at 223.52 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4029,7 +4029,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 217.17 36.83 0)
+			(at 223.52 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4038,7 +4038,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 217.17 36.83 0)
+			(at 223.52 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
