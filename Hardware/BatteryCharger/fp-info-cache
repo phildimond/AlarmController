@@ -1,4 +1,4 @@
-23078349100710783
+23124847745043286
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -66156,6 +66156,209 @@ USB USB_B USB_micro USB_OTG
 0
 11
 6
+MyParts-Mouser
+86130162324345E1LF
+86130162324345E1LF-1
+Connector
+0
+18
+18
+MyParts-Mouser
+23SR1KLFTR
+23SR1KLFTR-1
+Variable Resistor
+0
+3
+3
+MyParts-Mouser
+1074
+1074-2
+Undefined or Miscellaneous
+0
+3
+3
+MyParts-Mouser
+1725656
+1725656
+Connector
+0
+2
+2
+MyParts-Mouser
+1725711
+1725711
+Connector
+0
+8
+8
+MyParts-Mouser
+ABM3AIG8000MHZ81RT
+ABM3AIG-8.000MHZ-8-1R-T-2
+Crystal or Oscillator
+0
+2
+2
+MyParts-Mouser
+BZT55B13GS08
+QuadroMELF SOD-80
+Diode
+0
+2
+2
+MyParts-Mouser
+ESP32WROOM32EM113EH2800PH3Q0
+ESP32-WROOM-32E(M113EH2800PH3Q0)-2
+Integrated Circuit
+0
+47
+47
+MyParts-Mouser
+FOXSDLF_080-20
+FOXSDLF/080-20
+Crystal or Oscillator
+0
+2
+2
+MyParts-Mouser
+HDRV8W64P0X254_1X8_2032X580X1170P
+22-27-2081
+Connector
+0
+8
+8
+MyParts-Mouser
+K104K15X7RF53H5
+K104K15X7RF53H5
+Capacitor
+0
+2
+2
+MyParts-Mouser
+LFXTAL009678REEL
+LFXTAL009678REEL-2
+Crystal or Oscillator
+0
+2
+2
+MyParts-Mouser
+LL3301BF065QJ
+LL3301BF065QJ-2
+Switch
+0
+4
+4
+MyParts-Mouser
+LL3301NF065QG
+LL3301NF065QG
+Switch
+0
+4
+4
+MyParts-Mouser
+MICROXNJ
+MICROXNJ-1
+Connector
+0
+11
+11
+MyParts-Mouser
+NE555DR
+D (R-PDSO-G8)
+Integrated Circuit
+0
+8
+8
+MyParts-Mouser
+NME0512SC
+NME0512SC-2
+Power Supply
+0
+4
+4
+MyParts-Mouser
+QFP50P1600X1600X160-100N
+ST LQFP100
+Integrated Circuit
+0
+100
+100
+MyParts-Mouser
+R-78E5.0-1.0
+R-78E5.0-1.0
+Transformer
+0
+3
+3
+MyParts-Mouser
+RESAD1590W60L630D240
+CFR-25
+Resistor
+0
+2
+2
+MyParts-Mouser
+RESC3116X70N
+ERJ8EN
+Resistor
+0
+2
+2
+MyParts-Mouser
+ROE1205S
+ROE
+Power Supply
+0
+4
+4
+MyParts-Mouser
+SHDR4W105P508X254_2X2_808X1360X1310P
+1-2834016-2
+Connector
+0
+4
+4
+MyParts-Mouser
+SOIC127P602X173-8N
+FM25V02A-GTR
+Integrated Circuit
+0
+8
+8
+MyParts-Mouser
+SOT96P237X111-3N
+SOT-23 (TO-236) CASE 318-08
+Diode
+0
+3
+3
+MyParts-Mouser
+SOT230P700X180-4N
+DCY (R-PDSO-G4
+Integrated Circuit
+0
+4
+4
+MyParts-Mouser
+SS6488FLS
+SS-6488-FLS-2
+Connector
+0
+10
+10
+MyParts-Mouser
+TES10510
+TES 1
+Power Supply
+0
+5
+5
+MyParts-Mouser
+Wurth_691313510002_Pluggable_Terminal_Block
+691313510002
+Connector
+0
+2
+2
 NetTie
 NetTie-2_SMD_Pad0.5mm
 Net tie, 2 pin, 0.5mm square SMD pads
