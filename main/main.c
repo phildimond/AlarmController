@@ -18,6 +18,8 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
+#include "esp_adc/adc_oneshot.h"
+#include "esp_timer.h"
 #include "esp_spiffs.h"
 #include "esp_system.h"
 
@@ -120,6 +122,24 @@ void app_main(void)
     initialiseInputs(inputs, inputPins, NUM_INPUTS);
     vTaskDelay(50 / portTICK_PERIOD_MS); // Short delay for inputs to stabilise
 
+    //-------------ADC1 Init---------------//
+    adc_oneshot_unit_handle_t adc1_handle;
+    adc_oneshot_unit_init_cfg_t init_config1 = { .unit_id = ADC_UNIT_1, };
+    ESP_ERROR_CHECK(adc_oneshot_new_unit(&init_config1, &adc1_handle));
+
+    //-------------ADC1 Config---------------//
+    adc_oneshot_chan_cfg_t adc1_config = {
+        .bitwidth = ADC_BITWIDTH_DEFAULT,
+        .atten = ADC_ATTEN_DB_11,
+    };
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, BATT_ADC_CHANNEL, &adc1_config));
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, VIN_ADC_CHANNEL, &adc1_config));
+
+    int batt_volts_raw = 0;
+    int vin_volts_raw = 0;
+
+    uint64_t last_ADC_Update = esp_timer_get_time();
+
     // Main app loop
     while (true) {
         // Read and process any changes to the inputs
@@ -128,11 +148,26 @@ void app_main(void)
             if (inputs[i].changed) {
                 ESP_LOGI(TAG, "Input %d changed to %d", i, inputs[i].currentState);
                 bool state = false;
-                if (inputs[i].currentState) { state = true; }
-                sendState(i, state);
+                if (config.inputs[i].normallyClosed) { 
+                    if (inputs[i].currentState) { state = true; } else { state = false; } 
+                } else {
+                    if (inputs[i].currentState) { state = false; } else { state = true; } 
+                }
+                if (config.inputs[i].active) { sendState(i, state); }
+                else { ESP_LOGI(TAG, "Not sending to MQTT as input %d is disabled.", i); }
             }
         }
 
+        // Read battery and VIN voltages
+        uint64_t usecs = esp_timer_get_time();
+        if (usecs - last_ADC_Update > S_TO_uS(1)) {
+            last_ADC_Update = usecs;
+            ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, BATT_ADC_CHANNEL, &batt_volts_raw));
+            ESP_LOGI(TAG, "Battery voltage raw ADC value = %d", batt_volts_raw);
+            ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, VIN_ADC_CHANNEL, &vin_volts_raw));
+            ESP_LOGI(TAG, "5V rail voltage raw ADC value = %d", vin_volts_raw);
+        }
+        
         // Sleep and let other tasks run
         vTaskDelay(25 / portTICK_PERIOD_MS);
     }

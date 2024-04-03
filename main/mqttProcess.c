@@ -103,10 +103,10 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                     sprintf(payload, "OFF");
                     int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
                     mqttMessagesQueued++;
-                    ESP_LOGI(TAG, "Published state message for input %d, %s successfully, msg_id=%d", i, config.inputs[i].descriptiveName, msg_id);
+                    ESP_LOGI(TAG, "Published state message for input %d, %s = %s successfully, msg_id=%d", 
+                        i, config.inputs[i].descriptiveName, payload, msg_id);
                 }
             }
-
             break;
         case MQTT_EVENT_DISCONNECTED:
             mqttConnected = false;
@@ -224,6 +224,6 @@ void sendState(int inputNumber, bool active)
     if (active) { sprintf(payload, "ON"); } else { sprintf(payload, "OFF"); }
     int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
     mqttMessagesQueued++;
-    ESP_LOGI(TAG, "Published state message for input %d, %s successfully, msg_id=%d", 
-        inputNumber, config.inputs[inputNumber].descriptiveName, msg_id);
+    ESP_LOGI(TAG, "Published state message for input %d, %s = %s successfully, msg_id=%d", 
+        inputNumber, config.inputs[inputNumber].descriptiveName, payload, msg_id);
 }
