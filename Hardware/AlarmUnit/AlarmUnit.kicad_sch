@@ -4319,16 +4319,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 62.23) (xy 68.58 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "180a0d0e-bc35-4095-ba77-aa2e513064e6")
-	)
-	(wire
-		(pts
 			(xy 110.49 132.08) (xy 130.81 132.08)
 		)
 		(stroke
@@ -4366,16 +4356,6 @@
 			(type default)
 		)
 		(uuid "20c23357-115c-449d-aba2-59f3f1c8f35d")
-	)
-	(wire
-		(pts
-			(xy 35.56 72.39) (xy 39.37 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "28661885-699a-4aa6-994d-f7bfc3bcf24a")
 	)
 	(wire
 		(pts
@@ -4419,16 +4399,6 @@
 	)
 	(wire
 		(pts
-			(xy 36.83 120.65) (xy 40.64 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "335af12a-136d-4548-8d8f-251552648012")
-	)
-	(wire
-		(pts
 			(xy 238.76 29.21) (xy 238.76 17.78)
 		)
 		(stroke
@@ -4466,16 +4436,6 @@
 			(type default)
 		)
 		(uuid "36a22410-0be6-42f7-be70-8dfec71d80b9")
-	)
-	(wire
-		(pts
-			(xy 64.77 72.39) (xy 68.58 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3a216d6a-f541-454e-9ece-825e7e1bcf7e")
 	)
 	(wire
 		(pts
@@ -4559,16 +4519,6 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 120.65) (xy 66.04 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47e608f0-1be7-421a-aea4-265836c8cb12")
-	)
-	(wire
-		(pts
 			(xy 144.78 179.07) (xy 151.13 179.07)
 		)
 		(stroke
@@ -4606,16 +4556,6 @@
 			(type default)
 		)
 		(uuid "53bf7d3c-bb5e-4e43-92ff-523f0bba71f0")
-	)
-	(wire
-		(pts
-			(xy 60.96 125.73) (xy 66.04 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "56c469e5-9179-4440-9bec-ca17005fe89a")
 	)
 	(wire
 		(pts
@@ -5149,16 +5089,6 @@
 	)
 	(wire
 		(pts
-			(xy 35.56 62.23) (xy 39.37 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b5af8338-e258-486d-9690-89aba9eaf4b0")
-	)
-	(wire
-		(pts
 			(xy 83.82 35.56) (xy 87.63 35.56)
 		)
 		(stroke
@@ -5356,16 +5286,6 @@
 			(type default)
 		)
 		(uuid "e0399820-1803-49d4-8b14-88dc88307476")
-	)
-	(wire
-		(pts
-			(xy 36.83 125.73) (xy 40.64 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e119836b-12b4-42a1-b115-89efc4963370")
 	)
 	(wire
 		(pts
@@ -6814,12 +6734,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+12Va"
-			(at 66.04 95.25 0)
+		(property "Value" "+12V"
+			(at 68.58 99.0599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -6929,80 +6850,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Converter_DCDC:TBA2-1212")
-		(at 50.8 123.19 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "23dc1842-24be-4ba5-8dad-a5bc3b2eda5e")
-		(property "Reference" "U13"
-			(at 50.8 113.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "VRB1212YMD-5WR3"
-			(at 50.8 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Converter_DCDC:Converter_DCDC_TRACO_TBA2-xxxx_Single_THT"
-			(at 50.8 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.tracopower.com/products/tba2.pdf"
-			(at 50.8 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "2W DC/DC converter unregulated, 10.8-13.2V input, 12V fixed output voltage, 165mA output, 1.5kVDC isolation, SIP-7"
-			(at 50.8 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d7756177-60da-413b-bb90-f8eee0d65026")
-		)
-		(pin "1"
-			(uuid "7532dee3-3c9d-4a65-9504-d884b80ed3ca")
-		)
-		(pin "4"
-			(uuid "0a699cb7-cc55-42b4-992f-55ef6ebb4f5b")
-		)
-		(pin "6"
-			(uuid "ff3ba2a5-fa95-417f-96bc-c2f3f884fb9d")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "U13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 54.61 35.56 0)
 		(unit 1)
@@ -7085,7 +6932,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+13.5V"
+		(property "Value" "+12V"
 			(at 122.936 175.514 0)
 			(effects
 				(font
@@ -7694,71 +7541,6 @@
 			(project "AlarmUnit"
 				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
 					(reference "J7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 66.04 125.73 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "38d0e66c-d905-4ca2-8534-9d84c0757475")
-		(property "Reference" "#PWR028"
-			(at 66.04 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND_ISO"
-			(at 65.786 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 66.04 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 66.04 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 66.04 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "23d902e6-203d-4a43-92d1-59cf95b9aec7")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -8386,201 +8168,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 35.56 72.39 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "65e68838-532d-45ab-89b7-2dcced19d9e7")
-		(property "Reference" "#PWR032"
-			(at 35.56 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 35.56 76.454 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 35.56 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 35.56 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 35.56 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0040f5d0-6123-464c-9ed8-c09acd1113c7")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 68.58 72.39 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "670a10c7-edcd-4a7b-8c91-5ef39be05153")
-		(property "Reference" "#PWR031"
-			(at 68.58 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 68.58 76.454 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 68.58 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 68.58 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 68.58 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "376cf3b8-2d0a-44c5-a745-aaed8a3309cf")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR031")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+12V")
-		(at 36.83 120.65 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "68f9e8df-f6c9-441f-b488-4f7871f9b0e8")
-		(property "Reference" "#PWR035"
-			(at 36.83 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+13.5V"
-			(at 36.576 117.094 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 36.83 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 36.83 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 36.83 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "438cb206-fe1b-476a-9fa1-6bdaeb677cd4")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR035")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 213.36 64.77 90)
 		(unit 1)
@@ -8784,72 +8371,6 @@
 			(project "AlarmUnit"
 				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
 					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+12V")
-		(at 66.04 120.65 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "82244a27-6374-4e35-8f75-57bfbacf7d59")
-		(property "Reference" "#PWR013"
-			(at 66.04 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+12Vb"
-			(at 66.04 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 66.04 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 66.04 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 66.04 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "42e53774-25fb-49b6-9de6-4ba0edfee298")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -9137,71 +8658,6 @@
 			(project "AlarmUnit"
 				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
 					(reference "#PWR07")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+12V")
-		(at 68.58 62.23 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8ff769a7-f44d-4607-af59-5119a28620cd")
-		(property "Reference" "#PWR033"
-			(at 68.58 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+13.5V"
-			(at 68.326 58.674 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 68.58 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 68.58 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 68.58 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "78b7c9ec-a030-4581-aa7f-3c59d0f1be65")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -10010,71 +9466,6 @@
 	)
 	(symbol
 		(lib_id "power:+12V")
-		(at 35.56 62.23 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a8bbc53e-fedc-4975-a92b-b69d588e3e42")
-		(property "Reference" "#PWR036"
-			(at 35.56 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+13.5V"
-			(at 35.306 58.674 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 35.56 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 35.56 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 35.56 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b8f674c2-2814-4732-83d7-f4d8d3736948")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR036")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+12V")
 		(at 87.63 25.4 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10198,71 +9589,6 @@
 			(project "AlarmUnit"
 				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
 					(reference "#PWR040")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 36.83 125.73 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b7ae937f-a717-4b90-9fd0-b8b73b1c3ded")
-		(property "Reference" "#PWR029"
-			(at 36.83 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 36.83 129.794 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 36.83 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 36.83 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 36.83 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "00226342-acbb-4fb9-82d7-979559e103b2")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -10462,79 +9788,6 @@
 			(project "AlarmUnit"
 				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
 					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Regulator_Switching:CRE1S2405SC")
-		(at 52.07 67.31 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d356d0c2-984b-4d94-9ec8-6d325b3cb6de")
-		(property "Reference" "U11"
-			(at 52.324 55.372 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Lead-Acid-Charger"
-			(at 52.07 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Converter_DCDC:Converter_DCDC_Murata_CRE1xxxxxxSC_THT"
-			(at 52.07 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://power.murata.com/datasheet?/data/power/ncl/kdc_cre1.pdf"
-			(at 52.07 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "24V to 5V 200mA DC-DC Converter with 1kV isolation, SIP-4"
-			(at 52.07 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "f48af89d-07b2-48a0-981b-3ecc54b7698e")
-		)
-		(pin "3"
-			(uuid "5a1cf863-6c50-4efa-8800-fd5b8d1eaaba")
-		)
-		(pin "1"
-			(uuid "fb3b5440-1c7f-4a04-929d-96ba69b92ac5")
-		)
-		(pin "2"
-			(uuid "d87468da-ac73-4444-acce-dfc72ae9ad3b")
-		)
-		(instances
-			(project "AlarmUnit"
-				(path "/162296b5-80bd-4bbf-80b1-22ff479d07d5"
-					(reference "U11")
 					(unit 1)
 				)
 			)
