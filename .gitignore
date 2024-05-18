@@ -53,3 +53,7 @@ dkms.conf
 
 #KiCad Backups
 /Hardware/BatteryCharger/BatteryCharger-backups
+
+#Build files
+/build
+
