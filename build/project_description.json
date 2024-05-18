@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "alarm_controller",
-    "project_version":    "c63dabd-dirty",
+    "project_version":    "bcd0fb6-dirty",
     "project_path":       "/home/phillip/source/repos/AlarmController",
     "idf_path":           "/home/phillip/esp/esp-idf",
     "build_dir":          "/home/phillip/source/repos/AlarmController/build",
