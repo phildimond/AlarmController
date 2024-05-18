@@ -52,8 +52,8 @@ Mkfile.old
 dkms.conf
 
 #KiCad Backups
-/Hardware/BatteryCharger/BatteryCharger-backups
+/Hardware/BatteryCharger/BatteryCharger-backups/
 
 #Build files
-/build
+/build/
 
