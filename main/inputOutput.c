@@ -53,6 +53,22 @@ void initialSetup()
     button_conf.pin_bit_mask = (1ULL << button_pin);
     button_conf.pull_up_en = GPIO_PULLUP_DISABLE;
     ESP_ERROR_CHECK(gpio_config(&button_conf));
+
+    // External Siren Output
+    const gpio_num_t extsiren_pin = ExternalSirenPin;
+    gpio_config_t extsiren_conf = {0};
+    extsiren_conf.mode = GPIO_MODE_OUTPUT;
+    extsiren_conf.pin_bit_mask = (1ULL << extsiren_pin);
+    ESP_ERROR_CHECK(gpio_config(&extsiren_conf));
+    ESP_ERROR_CHECK(gpio_set_level(extsiren_pin, 0));
+
+    // Internal Siren Output
+    const gpio_num_t intsiren_pin = DownstairsSirenPin;
+    gpio_config_t intsiren_conf = {0};
+    intsiren_conf.mode = GPIO_MODE_OUTPUT;
+    intsiren_conf.pin_bit_mask = (1ULL << intsiren_pin);
+    ESP_ERROR_CHECK(gpio_config(&intsiren_conf));
+    ESP_ERROR_CHECK(gpio_set_level(intsiren_pin, 0));
 }
 
 /******************************************************************

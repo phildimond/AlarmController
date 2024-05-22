@@ -14,6 +14,8 @@ extern bool ethernetGotIp;
 #define In4_Pin GPIO_NUM_16
 #define In5_Pin GPIO_NUM_32
 #define In6_Pin GPIO_NUM_33
+#define ExternalSirenPin GPIO_NUM_4
+#define DownstairsSirenPin GPIO_NUM_5
 #define BATT_ADC_CHANNEL ADC_CHANNEL_7
 #define VIN_ADC_CHANNEL ADC_CHANNEL_3
 

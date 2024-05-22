@@ -162,10 +162,29 @@ void app_main(void)
         uint64_t usecs = esp_timer_get_time();
         if (usecs - last_ADC_Update > S_TO_uS(1)) {
             last_ADC_Update = usecs;
+            /*
             ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, BATT_ADC_CHANNEL, &batt_volts_raw));
             ESP_LOGI(TAG, "Battery voltage raw ADC value = %d", batt_volts_raw);
             ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, VIN_ADC_CHANNEL, &vin_volts_raw));
             ESP_LOGI(TAG, "5V rail voltage raw ADC value = %d", vin_volts_raw);
+            */
+
+            if (gpio_get_level(ExternalSirenPin) == 0) { 
+                ESP_LOGI(TAG, "Turning external siren ON.");
+                gpio_set_level(ExternalSirenPin, 1); 
+            } else { 
+                ESP_LOGI(TAG, "Turning external siren OFF.");
+                gpio_set_level(ExternalSirenPin, 0); 
+            }
+
+            if (gpio_get_level(DownstairsSirenPin) == 0) { 
+                ESP_LOGI(TAG, "Turning downstairs siren ON.");
+                gpio_set_level(DownstairsSirenPin, 1); 
+            } else { 
+                ESP_LOGI(TAG, "Turning downstairs siren OFF.");
+                gpio_set_level(DownstairsSirenPin, 0); 
+            }
+
         }
         
         // Sleep and let other tasks run
