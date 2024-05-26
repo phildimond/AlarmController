@@ -33,6 +33,10 @@
 #include "defines.h"
 #include "ethernetProcess.h"
 
+bool MyEthernetIsConnected = false;
+bool MyEthernetGotIp = false;
+bool MyEthernetHasDHCP = false;
+
 /** Event handler for Ethernet events */
 void eth_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
@@ -46,9 +50,11 @@ void eth_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id,
         ESP_LOGI(TAG, "Ethernet Link Up");
         ESP_LOGI(TAG, "Ethernet HW Addr %02x:%02x:%02x:%02x:%02x:%02x",
                  mac_addr[0], mac_addr[1], mac_addr[2], mac_addr[3], mac_addr[4], mac_addr[5]);
+        MyEthernetIsConnected = true;
         break;
     case ETHERNET_EVENT_DISCONNECTED:
         ESP_LOGI(TAG, "Ethernet Link Down");
+        MyEthernetIsConnected = false;
         break;
     case ETHERNET_EVENT_START:
         ESP_LOGI(TAG, "Ethernet Started");
@@ -67,7 +73,7 @@ void got_ip_event_handler(void *arg, esp_event_base_t event_base, int32_t event_
     ip_event_got_ip_t *event = (ip_event_got_ip_t *) event_data;
     const esp_netif_ip_info_t *ip_info = &event->ip_info;
 
-    ethernetGotIp = true;
+    MyEthernetGotIp = true;
 
     ESP_LOGI(TAG, "Ethernet Got IP Address");
     ESP_LOGI(TAG, "~~~~~~~~~~~");

@@ -1,9 +1,6 @@
-/* MQTT Enphase Envoy power controller for Home Assistant
+/* Home alarm system with MQTT support intended to integrate 
+   with Home Assistant, etc.
    
-   Gets power data from Home Assistant via MQTT and uses it to set
-   the Enphase Wnvoy relay inputs to limit power production so that
-   there is no export to the grid when appropriate.
-
    Copyright 2024 Phillip C Dimond
 
    Licensed under the Apache License, Version 2.0 (the "License");

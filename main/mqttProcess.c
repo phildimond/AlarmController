@@ -26,6 +26,8 @@
 #include "config.h"
 #include "mqttProcess.h"
 
+bool MyMqttConnected = false;
+
 int mqttMessagesQueued = 0;
 bool gotTime = false;
 int year = 0, month = 0, day = 0, hour = 0, minute = 0, seconds = 0;
@@ -56,7 +58,7 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             ESP_LOGI(TAG, "MQTT_EVENT_BEFORE_CONNECT");
             break;
         case MQTT_EVENT_CONNECTED:
-            mqttConnected = true;
+            MyMqttConnected = true;
             ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
 
             // Subscribe to the time feed
@@ -164,7 +166,7 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
 
             break;
         case MQTT_EVENT_DISCONNECTED:
-            mqttConnected = false;
+            MyMqttConnected = false;
             ESP_LOGE(TAG, "MQTT_EVENT_DISCONNECTED");
             break;
         case MQTT_EVENT_SUBSCRIBED:

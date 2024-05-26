@@ -55,20 +55,21 @@ void initialSetup()
     ESP_ERROR_CHECK(gpio_config(&button_conf));
 
     // External Siren Output
-    const gpio_num_t extsiren_pin = ExternalSirenPin;
-    gpio_config_t extsiren_conf = {0};
-    extsiren_conf.mode = GPIO_MODE_OUTPUT;
-    extsiren_conf.pin_bit_mask = (1ULL << extsiren_pin);
-    ESP_ERROR_CHECK(gpio_config(&extsiren_conf));
-    ESP_ERROR_CHECK(gpio_set_level(extsiren_pin, 0));
+    //const gpio_num_t extsiren_pin = ExternalSirenPin;
+    //gpio_config_t extsiren_conf = {0};
+    //extsiren_conf.mode = GPIO_MODE_OUTPUT;
+    //extsiren_conf.pin_bit_mask = (1ULL << extsiren_pin);
+    ESP_ERROR_CHECK(gpio_set_direction(ExternalSirenPin, GPIO_MODE_OUTPUT));
+    ESP_ERROR_CHECK(gpio_set_level(ExternalSirenPin, 0));
 
     // Internal Siren Output
-    const gpio_num_t intsiren_pin = DownstairsSirenPin;
-    gpio_config_t intsiren_conf = {0};
-    intsiren_conf.mode = GPIO_MODE_OUTPUT;
-    intsiren_conf.pin_bit_mask = (1ULL << intsiren_pin);
-    ESP_ERROR_CHECK(gpio_config(&intsiren_conf));
-    ESP_ERROR_CHECK(gpio_set_level(intsiren_pin, 0));
+//    const gpio_num_t intsiren_pin = DownstairsSirenPin;
+//    gpio_config_t intsiren_conf = {0};
+//    intsiren_conf.mode = GPIO_MODE_OUTPUT;
+//    intsiren_conf.pin_bit_mask = (1ULL << intsiren_pin);
+//    ESP_ERROR_CHECK(gpio_config(&intsiren_conf));
+    ESP_ERROR_CHECK(gpio_set_direction(DownstairsSirenPin, GPIO_MODE_OUTPUT));
+    ESP_ERROR_CHECK(gpio_set_level(DownstairsSirenPin, 0));
 }
 
 /******************************************************************
