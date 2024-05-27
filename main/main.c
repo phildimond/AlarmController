@@ -46,10 +46,19 @@
 
 AlarmMachine houseAlarm;
 
+// Ethernet state variables
 extern bool MyEthernetIsConnected;
 extern bool MyEthernetGotIp;
 extern bool MyEthernetHasDHCP;
+
+// MQTT State information
 extern bool MyMqttConnected;
+
+// MQTT Siren Request flags
+extern bool ExternalSirenActivationRequested;
+extern bool ExternalSirenSilenceRequested;
+extern bool DownstairsSirenActivationRequested;
+extern bool DownstairsSirenSilenceRequested;
 
 const char *TAG = "AlarmController";
 
@@ -194,29 +203,14 @@ void app_main(void)
             ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, VIN_ADC_CHANNEL, &vin_volts_raw));
             ESP_LOGI(TAG, "5V rail voltage raw ADC value = %d", vin_volts_raw);
             */
-
-            if (elevel == 0) { 
-                //ESP_LOGI(TAG, "Turning external siren ON.");
-                gpio_set_level(ExternalSirenPin, 1); 
-                elevel = 1;
-            } else { 
-                //ESP_LOGI(TAG, "Turning external siren OFF.");
-                gpio_set_level(ExternalSirenPin, 0); 
-                elevel = 0;
-            }
-
-            if (ilevel == 0) { 
-                //ESP_LOGI(TAG, "Turning downstairs siren ON.");
-                gpio_set_level(DownstairsSirenPin, 1); 
-                ilevel = 1;
-            } else { 
-                //ESP_LOGI(TAG, "Turning downstairs siren OFF.");
-                gpio_set_level(DownstairsSirenPin, 0); 
-                ilevel = 0;
-            }
-
         }
-        
+
+        // Process commands for the sirens from the host system
+        if (ExternalSirenActivationRequested) { gpio_set_level(ExternalSirenPin, 1); ExternalSirenActivationRequested = false; }
+        if (ExternalSirenSilenceRequested) { gpio_set_level(ExternalSirenPin, 0); ExternalSirenSilenceRequested = false; }
+        if (DownstairsSirenActivationRequested) { gpio_set_level(DownstairsSirenPin, 1); DownstairsSirenActivationRequested = false; }
+        if (DownstairsSirenSilenceRequested) { gpio_set_level(DownstairsSirenPin, 0); DownstairsSirenSilenceRequested = false; }
+
         // Sleep and let other tasks run
         vTaskDelay(25 / portTICK_PERIOD_MS);
     }

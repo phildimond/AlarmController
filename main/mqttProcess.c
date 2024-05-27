@@ -27,6 +27,10 @@
 #include "mqttProcess.h"
 
 bool MyMqttConnected = false;
+bool ExternalSirenActivationRequested = false;
+bool ExternalSirenSilenceRequested = false;
+bool DownstairsSirenActivationRequested = false;
+bool DownstairsSirenSilenceRequested = false;
 
 int mqttMessagesQueued = 0;
 bool gotTime = false;
@@ -209,6 +213,22 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                     ESP_LOGD(TAG, "Published siren switch online message successfully, msg_id=%d, topic=%s", msg_id, topic);
                     
                 }
+            } else if (strcmp(topic, "homeassistant/siren/HouseAlarm/ExternalSiren/command") == 0) {
+                strncpy(payload, event->data, event->data_len);
+                payload[event->data_len] = 0;
+                if (strstr(payload, "state") != NULL) { 
+                    if (strstr(payload, "ON") != NULL) { ExternalSirenActivationRequested = true; }
+                    else if (strstr(payload, "OFF") != NULL) { ExternalSirenSilenceRequested = true; }
+                    else {ESP_LOGI(TAG, "House Alarm External Siren request with unknown payload \"%s\" received.", payload); }
+                }
+            } else if (strcmp(topic, "homeassistant/siren/HouseAlarm/DownstairsSiren/command") == 0) {
+                strncpy(payload, event->data, event->data_len);
+                payload[event->data_len] = 0;
+                if (strstr(payload, "state") != NULL) { 
+                    if (strstr(payload, "ON") != NULL) { DownstairsSirenActivationRequested = true; }
+                    else if (strstr(payload, "OFF") != NULL) { DownstairsSirenSilenceRequested = true; }
+                    else {ESP_LOGI(TAG, "House Alarm External Siren request with unknown payload \"%s\" received.", payload); }
+                }
             } else {
                 strncpy(payload, event->data, event->data_len);
                 payload[event->data_len] = 0;
@@ -291,6 +311,6 @@ void sendState(int inputNumber, bool active)
     if (active) { sprintf(payload, "ON"); } else { sprintf(payload, "OFF"); }
     int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
     mqttMessagesQueued++;
-    ESP_LOGI(TAG, "Published state message for input %d, %s = %s successfully, msg_id=%d", 
+    ESP_LOGD(TAG, "Published state message for input %d, %s = %s successfully, msg_id=%d", 
         inputNumber, config.inputs[inputNumber].descriptiveName, payload, msg_id);
 }

@@ -25,9 +25,12 @@
 #include "inttypes.h"
 
 typedef enum { Armed, Disarmed, Triggered } AlarmStates;
+typedef enum { On, Off } SirenStates;
 
 typedef struct alarmMachine {
     AlarmStates alarmState;
+    SirenStates externalSirenState;
+    SirenStates internalSirenState;
 } AlarmMachine;
 
 void AlarmMachine_Initialise(AlarmMachine* instance);

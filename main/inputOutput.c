@@ -122,18 +122,18 @@ void updateInputs(DebouncedInput inputs[], int numInputs)
         //ESP_LOGI(TAG, "Read input %d, io %d value %d", i, inputs[i].gpioNumber, level);
         if (level != inputs[i].currentState && inputs[i].changeStart == 0) {
             if (inputs[i].changeStart == 0) { 
-                ESP_LOGI(TAG, "Input %d changed state, start debouncing.", i);
+                ESP_LOGD(TAG, "Input %d changed state, start debouncing.", i);
                 inputs[i].changeStart = esp_timer_get_time(); 
             }
         }
         if (inputs[i].changeStart != 0) {
             if (esp_timer_get_time() - inputs[i].changeStart > DEBOUNCE_TIME_US) {
-                ESP_LOGI(TAG, "Input %d debounced.", i);
+                ESP_LOGD(TAG, "Input %d debounced.", i);
                 inputs[i].changeStart = 0;
                 if (inputs[i].currentState != level) { 
                     inputs[i].previousState = inputs[i].currentState;
                     inputs[i].currentState = level;
-                    //ESP_LOGI(TAG, "Input %d changed to %d.", i, inputs[i].currentState);
+                    ESP_LOGD(TAG, "Input %d changed to %d.", i, inputs[i].currentState);
                     inputs[i].changed = true; 
                 } else { 
                     inputs[i].changed = false; 
