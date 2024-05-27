@@ -40,8 +40,11 @@
 #include "ethernetProcess.h"
 #include "mqttProcess.h"
 #include "inputOutput.h"
+#include "AlarmMachine.h"
 
 #include "main.h"
+
+AlarmMachine houseAlarm;
 
 extern bool MyEthernetIsConnected;
 extern bool MyEthernetGotIp;
@@ -161,16 +164,6 @@ void app_main(void)
 
     // Main app loop
     while (true) {
-
-        /*
-        if (esp_netif_is_netif_up(eth_netif)) {
-            // Ethernet is connected, start MQTT if not already started
-            mqtt_app_start();
-        } else {
-            ESP_LOGI(TAG, "Ethernet is down, trying to reconnect...");
-            vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for a second before retrying
-        }
-        */
 
         // Read and process any changes to the inputs
         updateInputs(inputs, NUM_INPUTS);

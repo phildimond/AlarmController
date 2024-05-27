@@ -170,14 +170,14 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             ESP_LOGE(TAG, "MQTT_EVENT_DISCONNECTED");
             break;
         case MQTT_EVENT_SUBSCRIBED:
-            ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
+            ESP_LOGD(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
             mqttMessagesQueued--;
             break;
         case MQTT_EVENT_UNSUBSCRIBED:
-            ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
+            ESP_LOGD(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
             break;
         case MQTT_EVENT_PUBLISHED:
-            ESP_LOGI(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
+            ESP_LOGD(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
             mqttMessagesQueued--;
             break;
         case MQTT_EVENT_DATA:
@@ -185,10 +185,10 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             //ESP_LOGI(TAG, "Event topic length = %d and data length = %d", event->topic_len, event->data_len);
             strncpy(topic, event->topic, event->topic_len);
             topic[event->topic_len] = '\0';
-            //ESP_LOGI(TAG, "Received an event - topic was %s", topic);
+            ESP_LOGD(TAG, "Received an event - topic was %s", topic);
             if (strcmp(topic, "homeassistant/CurrentTime") == 0) {
                 // Process the time
-                //ESP_LOGI(TAG, "Got the time from %s, as %.*s.", topic, event->data_len, event->data);
+                ESP_LOGD(TAG, "Got the time from %s, as %.*s.", topic, event->data_len, event->data);
                 gotTime = true;
                 strncpy(payload, event->data, event->data_len);
                 payload[event->data_len] = 0;
@@ -200,13 +200,13 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                     sprintf(payload, "online");
                     msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
                     mqttMessagesQueued++;
-                    ESP_LOGI(TAG, "Published sensor online message successfully, msg_id=%d, topic=%s", msg_id, topic);
+                    ESP_LOGD(TAG, "Published sensor online message successfully, msg_id=%d, topic=%s", msg_id, topic);
 
                     sprintf(topic, "homeassistant/siren/%s/availability", config.Name);
                     sprintf(payload, "online");
                     msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
                     mqttMessagesQueued++;
-                    ESP_LOGI(TAG, "Published siren switch online message successfully, msg_id=%d, topic=%s", msg_id, topic);
+                    ESP_LOGD(TAG, "Published siren switch online message successfully, msg_id=%d, topic=%s", msg_id, topic);
                     
                 }
             } else {
