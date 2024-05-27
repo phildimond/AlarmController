@@ -27,6 +27,7 @@
 #include "defines.h"
 
 void mqtt_app_start(void);
-void sendState(int inputNumber, bool active);
+void sendInputState(int inputNumber, bool active);
+void SendSirenState(char* sirenName, bool state);
 
 #endif // #ifndef __MQTTPROCESS_H__

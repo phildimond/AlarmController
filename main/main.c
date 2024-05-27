@@ -186,7 +186,7 @@ void app_main(void)
                     if (inputs[i].currentState) { state = false; } else { state = true; } 
                 }
                 if (config.inputs[i].active) { 
-                    sendState(i, state); 
+                    sendInputState(i, state); 
                 } else {
                     ESP_LOGI(TAG, "Not sending to MQTT as input %d is disabled.", i); 
                 }
@@ -206,10 +206,26 @@ void app_main(void)
         }
 
         // Process commands for the sirens from the host system
-        if (ExternalSirenActivationRequested) { gpio_set_level(ExternalSirenPin, 1); ExternalSirenActivationRequested = false; }
-        if (ExternalSirenSilenceRequested) { gpio_set_level(ExternalSirenPin, 0); ExternalSirenSilenceRequested = false; }
-        if (DownstairsSirenActivationRequested) { gpio_set_level(DownstairsSirenPin, 1); DownstairsSirenActivationRequested = false; }
-        if (DownstairsSirenSilenceRequested) { gpio_set_level(DownstairsSirenPin, 0); DownstairsSirenSilenceRequested = false; }
+        if (ExternalSirenActivationRequested) { 
+            gpio_set_level(ExternalSirenPin, 1); 
+            ExternalSirenActivationRequested = false; 
+            SendSirenState("ExternalSiren", true);
+        }
+        if (ExternalSirenSilenceRequested) { 
+            gpio_set_level(ExternalSirenPin, 0); 
+            ExternalSirenSilenceRequested = false; 
+            SendSirenState("ExternalSiren", false);
+        }
+        if (DownstairsSirenActivationRequested) { 
+            gpio_set_level(DownstairsSirenPin, 1); 
+            DownstairsSirenActivationRequested = false; 
+            SendSirenState("DownstairsSiren", true);
+        }
+        if (DownstairsSirenSilenceRequested) { 
+            gpio_set_level(DownstairsSirenPin, 0); 
+            DownstairsSirenSilenceRequested = false;
+            SendSirenState("DownstairsSiren", false); 
+        }
 
         // Sleep and let other tasks run
         vTaskDelay(25 / portTICK_PERIOD_MS);

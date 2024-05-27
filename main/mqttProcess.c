@@ -63,20 +63,11 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             break;
         case MQTT_EVENT_CONNECTED:
             MyMqttConnected = true;
-            ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
+            ESP_LOGD(TAG, "MQTT_EVENT_CONNECTED");
 
             // Subscribe to the time feed
             msg_id = esp_mqtt_client_subscribe(client, "homeassistant/CurrentTime", 0);
-            ESP_LOGI(TAG, "Subscribe sent for time feed, msg_id=%d", msg_id);
-
-            // Subscribe to the siren state feeds
-            sprintf(topic, "homeassistant/siren/%s/ExternalSiren/command", config.Name);
-            msg_id = esp_mqtt_client_subscribe(client, topic, 0);
-            ESP_LOGI(TAG, "Subscribe sent for the external siren event feed, msg_id=%d", msg_id);
-
-            sprintf(topic, "homeassistant/siren/%s/DownstairsSiren/command", config.Name);
-            msg_id = esp_mqtt_client_subscribe(client, topic, 0);
-            ESP_LOGI(TAG, "Subscribe sent for the external siren event feed, msg_id=%d", msg_id);
+            ESP_LOGD(TAG, "Subscribe sent for time feed, msg_id=%d", msg_id);
 
             // Send the alarm sensor configurations.
             // Use the same command and state topics so we don't have to echo commands to state
@@ -100,7 +91,7 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                         id, config.DeviceID, config.Name, config.Name, config.inputs[i].descriptiveName, config.Name, config.inputs[i].inputName);
                     msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
                     mqttMessagesQueued++;
-                    ESP_LOGI(TAG, "Published %s config message successfully, msg_id=%d", config.inputs[i].descriptiveName, msg_id);
+                    ESP_LOGD(TAG, "Published %s config message successfully, msg_id=%d", config.inputs[i].descriptiveName, msg_id);
                 }
             }
 
@@ -111,11 +102,13 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                 \"availability\": {\"topic\": \"homeassistant/siren/%s/availability\", \
                 \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}, \
                 \"name\": \"External Siren\", \"retain\":true, \"device_class\": \"siren\", \
-                \"command_topic\": \"homeassistant/siren/%s/ExternalSiren/command\"}",
-                id, config.DeviceID, config.Name, config.Name, config.Name);
+                \"command_topic\": \"homeassistant/siren/%s/ExternalSiren/command\", \
+                \"state_topic\": \"homeassistant/siren/%s/ExternalSiren/state\", \
+                \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}",
+                id, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
             msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
             mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published %s config message successfully, msg_id=%d", "ExternalSiren", msg_id);
+            ESP_LOGD(TAG, "Published %s config message successfully, msg_id=%d", "ExternalSiren", msg_id);
 
             sprintf(topic, "homeassistant/siren/%s/DownstairsSiren/config", config.Name);
             sprintf(payload, "{\"unique_id\": \"%s-DS\", \
@@ -123,24 +116,26 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                 \"availability\": {\"topic\": \"homeassistant/siren/%s/availability\", \
                 \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}, \
                 \"name\": \"Downstairs Interior Siren\", \"retain\":true, \"device_class\": \"siren\", \
-                \"command_topic\": \"homeassistant/siren/%s/DownstairsSiren/command\"}",
-                id, config.DeviceID, config.Name, config.Name, config.Name);
+                \"command_topic\": \"homeassistant/siren/%s/DownstairsSiren/command\", \
+                \"state_topic\": \"homeassistant/siren/%s/DownstairsSiren/state\", \
+                \"payload_on\": \"ON\", \"payload_off\": \"OFF\"}",
+                id, config.DeviceID, config.Name, config.Name, config.Name, config.Name);
             msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
             mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published %s config message successfully, msg_id=%d", "DownstairsSiren", msg_id);
+            ESP_LOGD(TAG, "Published %s config message successfully, msg_id=%d", "DownstairsSiren", msg_id);
 
             // Send online messages
             sprintf(topic, "homeassistant/binary_sensor/%s/availability", config.Name);
             sprintf(payload, "online");
             msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
             mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published sensor online message successfully, msg_id=%d, topic=%s", msg_id, topic);
+            ESP_LOGD(TAG, "Published sensor online message successfully, msg_id=%d, topic=%s", msg_id, topic);
 
             sprintf(topic, "homeassistant/siren/%s/availability", config.Name);
             sprintf(payload, "online");
             msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
             mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published siren switch online message successfully, msg_id=%d, topic=%s", msg_id, topic);
+            ESP_LOGD(TAG, "Published siren switch online message successfully, msg_id=%d, topic=%s", msg_id, topic);
 
             // Send input initial states
             for (int i = 0; i < NUM_INPUTS; i++) {
@@ -149,24 +144,32 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                     sprintf(payload, "OFF");
                     int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
                     mqttMessagesQueued++;
-                    ESP_LOGI(TAG, "Published state message for input %d, %s = %s successfully, msg_id=%d", 
-                        i, config.inputs[i].descriptiveName, payload, msg_id);
+                    ESP_LOGD(TAG, "Published state message for input %d, %s = %s successfully, msg_id=%d", i, config.inputs[i].descriptiveName, payload, msg_id);
                 }
             }
 
-            // Send initial siren states
+            // Send initial siren states via a command to override anything historical.
             sprintf(topic, "homeassistant/siren/%s/ExternalSiren/command", config.Name);
-            sprintf(payload, "\"state\":\"OFF\"");
+            sprintf(payload, "{\"state\":\"OFF\"}");
             int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
             mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published initial command message for External Siren successfully, msg_id=%d", msg_id);
+            ESP_LOGD(TAG, "Published initial command message for External Siren successfully, msg_id=%d", msg_id);
 
-            // Send initial siren states
             sprintf(topic, "homeassistant/siren/%s/DownstairsSiren/command", config.Name);
-            sprintf(payload, "\"state\":\"OFF\"");
+            sprintf(payload, "{\"state\":\"OFF\"}");
             msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
             mqttMessagesQueued++;
-            ESP_LOGI(TAG, "Published initial command message for External Siren successfully, msg_id=%d", msg_id);
+            ESP_LOGD(TAG, "Published initial command message for Downstairs Siren successfully, msg_id=%d", msg_id);
+
+            // Subscribe to the siren state feeds. Doing this AFTER sending initial states via command 
+            // to avoid any brief activations from conflicting messages from host.
+            sprintf(topic, "homeassistant/siren/%s/ExternalSiren/command", config.Name);
+            msg_id = esp_mqtt_client_subscribe(client, topic, 0);
+            ESP_LOGD(TAG, "Subscribe sent for the external siren event feed, msg_id=%d", msg_id);
+
+            sprintf(topic, "homeassistant/siren/%s/DownstairsSiren/command", config.Name);
+            msg_id = esp_mqtt_client_subscribe(client, topic, 0);
+            ESP_LOGD(TAG, "Subscribe sent for the external siren event feed, msg_id=%d", msg_id);
 
             break;
         case MQTT_EVENT_DISCONNECTED:
@@ -217,22 +220,32 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
                 strncpy(payload, event->data, event->data_len);
                 payload[event->data_len] = 0;
                 if (strstr(payload, "state") != NULL) { 
-                    if (strstr(payload, "ON") != NULL) { ExternalSirenActivationRequested = true; }
-                    else if (strstr(payload, "OFF") != NULL) { ExternalSirenSilenceRequested = true; }
-                    else {ESP_LOGI(TAG, "House Alarm External Siren request with unknown payload \"%s\" received.", payload); }
+                    ESP_LOGD(TAG, "House Alarm External Siren command with payload \"%s\" received.", payload); 
+                    if (strstr(payload, "ON") != NULL) { 
+                        ExternalSirenActivationRequested = true; 
+                    } else if (strstr(payload, "OFF") != NULL) { 
+                        ExternalSirenSilenceRequested = true; 
+                    } else {
+                        ESP_LOGE(TAG, "House Alarm External Siren request with unknown payload \"%s\" received.", payload); 
+                    }
                 }
             } else if (strcmp(topic, "homeassistant/siren/HouseAlarm/DownstairsSiren/command") == 0) {
                 strncpy(payload, event->data, event->data_len);
                 payload[event->data_len] = 0;
                 if (strstr(payload, "state") != NULL) { 
-                    if (strstr(payload, "ON") != NULL) { DownstairsSirenActivationRequested = true; }
-                    else if (strstr(payload, "OFF") != NULL) { DownstairsSirenSilenceRequested = true; }
-                    else {ESP_LOGI(TAG, "House Alarm External Siren request with unknown payload \"%s\" received.", payload); }
+                    ESP_LOGD(TAG, "House Alarm Downstairs Siren command with payload \"%s\" received.", payload); 
+                    if (strstr(payload, "ON") != NULL) { 
+                        DownstairsSirenActivationRequested = true; 
+                    } else if (strstr(payload, "OFF") != NULL) { 
+                        DownstairsSirenSilenceRequested = true; 
+                    } else {
+                        ESP_LOGE(TAG, "House Alarm External Siren request with unknown payload \"%s\" received.", payload); 
+                    }
                 }
             } else {
                 strncpy(payload, event->data, event->data_len);
                 payload[event->data_len] = 0;
-                ESP_LOGI(TAG, "Received unexpected message, topic=%s, payload=%s", topic, payload);
+                ESP_LOGE(TAG, "Received unexpected message, topic=%s, payload=%s", topic, payload);
             }            
             break;
         case MQTT_EVENT_ERROR:
@@ -245,7 +258,7 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             }
             break;
         default:
-            ESP_LOGE(TAG, "Other event id:%d", event->event_id);
+            ESP_LOGE(TAG, "Unhandled MQTT event. Event id = %d", event->event_id);
             break;
     }
 }
@@ -296,12 +309,12 @@ void mqtt_app_start(void)
 
 /********************************************************************************************************
  * 
- * Send MQTT Alarm state change event
+ * Send MQTT Alarm input state change event
  * 
- * Send a state change message to MQTT
+ * Send an input` state change message to MQTT
  * 
  *******************************************************************************************************/
-void sendState(int inputNumber, bool active)
+void sendInputState(int inputNumber, bool active)
 {
     char topic[200];
     char payload[20];
@@ -313,4 +326,28 @@ void sendState(int inputNumber, bool active)
     mqttMessagesQueued++;
     ESP_LOGD(TAG, "Published state message for input %d, %s = %s successfully, msg_id=%d", 
         inputNumber, config.inputs[inputNumber].descriptiveName, payload, msg_id);
+}
+
+/********************************************************************************************************
+ * 
+ * Send MQTT Alarm siren state change event
+ * 
+ * Send a siren state change message to MQTT
+ * 
+ *******************************************************************************************************/
+void SendSirenState(char* sirenName, bool state)
+{
+    char topic[200];
+    char payload[20];
+
+    sprintf(topic, "homeassistant/siren/%s/%s/state", config.Name, sirenName);
+    if (state == true) {
+        sprintf(payload, "{\"state\":\"ON\"}");
+    } else {
+        sprintf(payload, "{\"state\":\"OFF\"}");
+    }
+    int msg_id = esp_mqtt_client_publish(client, topic, payload, 0, 1, 1); 
+    mqttMessagesQueued++;
+    ESP_LOGD(TAG, "Published siren state message for the %s siren as on=%d successfully, msg_id=%d", 
+        sirenName, state, msg_id);
 }
