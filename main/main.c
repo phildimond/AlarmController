@@ -123,6 +123,9 @@ void app_main(void)
         if (c == 'y' || c == 'Y') { UserConfigEntry(); }
     }
 
+    //Initialise the alarm machine
+    AlarmMachine_Initialise(&houseAlarm, ExternalSirenPin, DownstairsSirenPin);
+
     // Initialise & start the ethernet interface and wait for it to get an IP address
     // If IP acquisition fails, we will continue on as it will auto-connect later if
     // the Ethernet connect becomes available.

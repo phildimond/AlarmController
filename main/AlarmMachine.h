@@ -23,16 +23,22 @@
 #define __ALARMMACHINE_H__
 
 #include "inttypes.h"
+#include "driver/gpio.h"
 
 typedef enum { Armed, Disarmed, Triggered } AlarmStates;
 typedef enum { On, Off } SirenStates;
 
 typedef struct alarmMachine {
-    AlarmStates alarmState;
+    gpio_num_t externalSirenPin;
+    gpio_num_t internalSirenPin;
+    AlarmStates alarmState;    
     SirenStates externalSirenState;
     SirenStates internalSirenState;
 } AlarmMachine;
 
-void AlarmMachine_Initialise(AlarmMachine* instance);
+void SetExternalSirenState(AlarmMachine* instance, SirenStates state);
+void SetInternalSirenState(AlarmMachine* instance, SirenStates state);
+void AlarmMachine_Initialise(AlarmMachine* instance, gpio_num_t externalSirenPin, gpio_num_t internalSirenPin);
+bool AlarmMachine_SetAlarmState(AlarmMachine* instance, AlarmStates state);
 
 #endif // #ifndef __ALARMMACHINE_H__

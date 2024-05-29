@@ -24,10 +24,57 @@
 
 #include "utilities.h"
 #include "config.h"
+#include "mqttProcess.h"
 #include "AlarmMachine.h"
 
-void AlarmMachine_Initialise(AlarmMachine* instance)
+/* ---------- External Siren State --------------*/
+void SetExternalSirenState(AlarmMachine* instance, SirenStates state)
 {
-    instance->alarmState = Disarmed;
+    switch (state) {
+        case Off:
+            gpio_set_level(instance->externalSirenPin, 1); 
+            SendSirenState("ExternalSiren", true);
+            break;
+        case On:
+            gpio_set_level(instance->externalSirenPin, 1); 
+            SendSirenState("ExternalSiren", true);
+            break;
+    }
 }
 
+/* ---------- Internal Siren State --------------*/
+void SetInternalSirenState(AlarmMachine* instance, SirenStates state)
+{
+    switch (state) {
+        case Off:
+            gpio_set_level(instance->internalSirenPin, 1); 
+            SendSirenState("InternalSiren", true);
+            break;
+        case On:
+            gpio_set_level(instance->internalSirenPin, 1); 
+            SendSirenState("InternalSiren", true);
+            break;
+    }
+}
+
+/*
+-----------------------------------------------------------------------------------
+    Initialise the alarm machine
+-----------------------------------------------------------------------------------
+*/
+void AlarmMachine_Initialise(AlarmMachine* instance, gpio_num_t externalSirenPin, gpio_num_t internalSirenPin)
+{
+    instance->externalSirenPin = externalSirenPin;
+    instance->internalSirenPin = internalSirenPin;
+    instance->alarmState = Disarmed;
+    instance->externalSirenState = Off;
+    instance->internalSirenState = Off;
+}
+
+bool AlarmMachine_SetAlarmState(AlarmMachine* instance, AlarmStates state)
+{
+    instance->alarmState = state;
+    if (state == Disarmed) {
+    }
+    return true;
+}
