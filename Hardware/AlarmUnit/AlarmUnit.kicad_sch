@@ -13953,6 +13953,17 @@
 		)
 		(uuid "018a902b-1d2f-4f67-a33e-c076da2e7cb5")
 	)
+	(label "In_5_Buffered"
+		(at 130.81 137.16 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "03c3a8d1-ac2e-4920-964b-a7f99fb0c0e6")
+	)
 	(label "Input_Common"
 		(at 259.08 69.85 180)
 		(fields_autoplaced yes)
@@ -14008,6 +14019,17 @@
 		)
 		(uuid "0fff020d-8f38-4ac3-a3b4-392f9e0651f0")
 	)
+	(label "In_4_Buffered"
+		(at 143.51 139.7 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "12c9f147-9a88-4dbd-b075-fc6975c200fc")
+	)
 	(label "Input_1"
 		(at 210.82 24.13 0)
 		(fields_autoplaced yes)
@@ -14041,6 +14063,17 @@
 		)
 		(uuid "18f80516-e4c9-418d-aa8f-108a4b2a41ec")
 	)
+	(label "In_6_Buffered"
+		(at 143.51 137.16 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1efff6e9-2c09-4482-b1fc-bbce881f2816")
+	)
 	(label "Input_Common"
 		(at 259.08 95.25 180)
 		(fields_autoplaced yes)
@@ -14062,6 +14095,17 @@
 			(justify right bottom)
 		)
 		(uuid "251914e2-0b34-4cd1-8357-bb4b6b382455")
+	)
+	(label "In_3_Buffered"
+		(at 130.81 165.1 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "2a976ab4-b359-41bf-9eb8-b2c4bc620fb6")
 	)
 	(label "Input_Common"
 		(at 259.08 46.99 180)
@@ -14130,6 +14174,17 @@
 		(uuid "577fb7ea-e372-464c-ac89-467c033d3157")
 	)
 	(label "In_6_Buffered"
+		(at 143.51 162.56 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "58f46d8c-76aa-4757-a9c4-00a24aac82f8")
+	)
+	(label "In_6_Buffered"
 		(at 113.03 82.55 180)
 		(fields_autoplaced yes)
 		(effects
@@ -14184,6 +14239,17 @@
 		)
 		(uuid "776e406f-7ab5-4cf7-be0a-3ae18be73153")
 	)
+	(label "In_4_Buffered"
+		(at 143.51 165.1 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7aaadf65-2126-41f1-ba9a-f5194a366b74")
+	)
 	(label "Out_1_Buffered"
 		(at 163.83 72.39 0)
 		(fields_autoplaced yes)
@@ -14206,6 +14272,28 @@
 		)
 		(uuid "82f420c4-f417-4246-bc01-fc1b3bdec881")
 	)
+	(label "In_1_Buffered"
+		(at 143.51 142.24 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "878a10f6-9fe6-439d-9314-70301128cd7c")
+	)
+	(label "In_1_Buffered"
+		(at 143.51 167.64 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8e2afccb-16cd-457c-b94f-28f0ed6bcd82")
+	)
 	(label "Out_2_Buffered"
 		(at 161.29 146.05 180)
 		(fields_autoplaced yes)
@@ -14216,6 +14304,17 @@
 			(justify right bottom)
 		)
 		(uuid "9543f6d3-2422-4c95-9c57-aef804bbc240")
+	)
+	(label "In_2_Buffered"
+		(at 130.81 142.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9a30d6c0-fe04-424f-b166-38dca7a2e699")
 	)
 	(label "Input_2"
 		(at 259.08 31.75 180)
@@ -14272,6 +14371,17 @@
 		)
 		(uuid "aa377035-02d6-4057-a707-857a4011aeec")
 	)
+	(label "In_3_Buffered"
+		(at 130.81 139.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ab5e2fcd-970a-4cb0-b007-31cb9c897451")
+	)
 	(label "In_2_Buffered"
 		(at 184.15 30.48 180)
 		(fields_autoplaced yes)
@@ -14282,6 +14392,17 @@
 			(justify right bottom)
 		)
 		(uuid "adbc62bf-088a-4891-89ad-65a38543074b")
+	)
+	(label "In_5_Buffered"
+		(at 130.81 162.56 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "af599fbb-b1b4-4558-a746-07a60b796928")
 	)
 	(label "In_1_Buffered"
 		(at 184.15 19.05 180)
@@ -14337,6 +14458,17 @@
 			(justify right bottom)
 		)
 		(uuid "cd876878-38af-4afe-9fb1-70c6e6f9cbc0")
+	)
+	(label "In_2_Buffered"
+		(at 130.81 167.64 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "d496f78e-ea7c-4dc3-be0d-0aa1bec53eec")
 	)
 	(label "OUT_2_+ve"
 		(at 260.35 120.65 180)
